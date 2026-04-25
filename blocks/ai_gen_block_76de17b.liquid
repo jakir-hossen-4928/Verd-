@@ -1,0 +1,1375 @@
+
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-benefits-section-{{ ai_gen_id }} {
+    display: block;
+    background: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+    padding: {{ block.settings.padding_top_mobile }}px {{ block.settings.padding_horizontal_mobile }}px {{ block.settings.padding_bottom_mobile }}px;
+    width: 100%;
+  }
+
+  .ai-benefits-inner-{{ ai_gen_id }} {
+    max-width: {{ block.settings.container_max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-benefits-header-{{ ai_gen_id }} {
+    text-align: {{ block.settings.header_alignment }};
+    margin-bottom: {{ block.settings.header_margin_bottom_mobile }}px;
+  }
+
+  .ai-benefits-eyebrow-{{ ai_gen_id }} {
+    font-size: {{ block.settings.eyebrow_font_size_mobile }}px;
+    letter-spacing: {{ block.settings.eyebrow_letter_spacing }};
+    text-transform: {{ block.settings.eyebrow_text_transform }};
+    color: {{ block.settings.eyebrow_color }};
+    margin: 0 0 {{ block.settings.eyebrow_margin_bottom_mobile }}px;
+    font-weight: {{ block.settings.eyebrow_font_weight }};
+    line-height: {{ block.settings.eyebrow_line_height }};
+  }
+
+  .ai-benefits-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_font_size_mobile }}px;
+    line-height: {{ block.settings.title_line_height }};
+    letter-spacing: {{ block.settings.title_letter_spacing }};
+    margin: 0;
+    color: {{ block.settings.title_color }};
+    font-weight: {{ block.settings.title_font_weight }};
+    font-style: {{ block.settings.title_font_style }};
+  }
+
+  .ai-benefits-title-{{ ai_gen_id }} em {
+    font-style: {{ block.settings.title_em_font_style }};
+    color: {{ block.settings.title_em_color }};
+    font-weight: {{ block.settings.title_em_font_weight }};
+  }
+
+  .ai-benefits-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+    gap: {{ block.settings.grid_gap_mobile }}px;
+  }
+
+  .ai-benefits-item-{{ ai_gen_id }} {
+    text-align: {{ block.settings.item_alignment }};
+    padding: {{ block.settings.item_padding }}px;
+  }
+
+  .ai-benefits-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size_mobile }}px;
+    height: {{ block.settings.icon_size_mobile }}px;
+    margin: 0 auto {{ block.settings.icon_margin_bottom_mobile }}px;
+    border-radius: {{ block.settings.icon_border_radius }}px;
+    background: {{ block.settings.icon_background }};
+    border: {{ block.settings.icon_border_width }}px {{ block.settings.icon_border_style }} {{ block.settings.icon_border_color }};
+    display: grid;
+    place-items: center;
+    color: {{ block.settings.icon_color }};
+    overflow: hidden;
+  }
+
+  .ai-benefits-icon-{{ ai_gen_id }} svg {
+    width: {{ block.settings.svg_size_mobile }}px;
+    height: {{ block.settings.svg_size_mobile }}px;
+    stroke-width: {{ block.settings.svg_stroke_width }};
+  }
+
+  .ai-benefits-icon-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-benefits-name-{{ ai_gen_id }} {
+    font-size: {{ block.settings.name_font_size_mobile }}px;
+    font-weight: {{ block.settings.name_font_weight }};
+    margin: 0 0 {{ block.settings.name_margin_bottom_mobile }}px;
+    color: {{ block.settings.name_color }};
+    line-height: {{ block.settings.name_line_height }};
+    letter-spacing: {{ block.settings.name_letter_spacing }};
+    font-style: {{ block.settings.name_font_style }};
+  }
+
+  .ai-benefits-desc-{{ ai_gen_id }} {
+    font-size: {{ block.settings.desc_font_size_mobile }}px;
+    color: {{ block.settings.desc_color }};
+    line-height: {{ block.settings.desc_line_height }};
+    margin: 0;
+    max-width: {{ block.settings.desc_max_width }}px;
+    margin-inline: auto;
+    font-weight: {{ block.settings.desc_font_weight }};
+    letter-spacing: {{ block.settings.desc_letter_spacing }};
+  }
+
+  @media (min-width: 700px) {
+    .ai-benefits-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_tablet }}, 1fr);
+      gap: {{ block.settings.grid_gap_tablet }}px;
+    }
+
+    .ai-benefits-icon-{{ ai_gen_id }} {
+      width: {{ block.settings.icon_size_tablet }}px;
+      height: {{ block.settings.icon_size_tablet }}px;
+      margin-bottom: {{ block.settings.icon_margin_bottom_tablet }}px;
+    }
+
+    .ai-benefits-icon-{{ ai_gen_id }} svg {
+      width: {{ block.settings.svg_size_tablet }}px;
+      height: {{ block.settings.svg_size_tablet }}px;
+    }
+
+    .ai-benefits-name-{{ ai_gen_id }} {
+      font-size: {{ block.settings.name_font_size_tablet }}px;
+      margin-bottom: {{ block.settings.name_margin_bottom_tablet }}px;
+    }
+
+    .ai-benefits-desc-{{ ai_gen_id }} {
+      font-size: {{ block.settings.desc_font_size_tablet }}px;
+    }
+
+    .ai-benefits-eyebrow-{{ ai_gen_id }} {
+      font-size: {{ block.settings.eyebrow_font_size_tablet }}px;
+      margin-bottom: {{ block.settings.eyebrow_margin_bottom_tablet }}px;
+    }
+
+    .ai-benefits-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_font_size_tablet }}px;
+    }
+
+    .ai-benefits-header-{{ ai_gen_id }} {
+      margin-bottom: {{ block.settings.header_margin_bottom_tablet }}px;
+    }
+
+    .ai-benefits-section-{{ ai_gen_id }} {
+      padding: {{ block.settings.padding_top_tablet }}px {{ block.settings.padding_horizontal_tablet }}px {{ block.settings.padding_bottom_tablet }}px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ai-benefits-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+      gap: {{ block.settings.grid_gap_desktop }}px;
+    }
+
+    .ai-benefits-icon-{{ ai_gen_id }} {
+      width: {{ block.settings.icon_size_desktop }}px;
+      height: {{ block.settings.icon_size_desktop }}px;
+      margin-bottom: {{ block.settings.icon_margin_bottom_desktop }}px;
+    }
+
+    .ai-benefits-icon-{{ ai_gen_id }} svg {
+      width: {{ block.settings.svg_size_desktop }}px;
+      height: {{ block.settings.svg_size_desktop }}px;
+    }
+
+    .ai-benefits-name-{{ ai_gen_id }} {
+      font-size: {{ block.settings.name_font_size_desktop }}px;
+      margin-bottom: {{ block.settings.name_margin_bottom_desktop }}px;
+    }
+
+    .ai-benefits-desc-{{ ai_gen_id }} {
+      font-size: {{ block.settings.desc_font_size_desktop }}px;
+    }
+
+    .ai-benefits-eyebrow-{{ ai_gen_id }} {
+      font-size: {{ block.settings.eyebrow_font_size_desktop }}px;
+      margin-bottom: {{ block.settings.eyebrow_margin_bottom_desktop }}px;
+    }
+
+    .ai-benefits-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_font_size_desktop }}px;
+    }
+
+    .ai-benefits-header-{{ ai_gen_id }} {
+      margin-bottom: {{ block.settings.header_margin_bottom_desktop }}px;
+    }
+
+    .ai-benefits-section-{{ ai_gen_id }} {
+      padding: {{ block.settings.padding_top_desktop }}px {{ block.settings.padding_horizontal_desktop }}px {{ block.settings.padding_bottom_desktop }}px;
+    }
+  }
+{% endstyle %}
+
+<benefits-section-{{ ai_gen_id }} class="ai-benefits-section-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-benefits-inner-{{ ai_gen_id }}">
+    <header class="ai-benefits-header-{{ ai_gen_id }}">
+      {% if block.settings.eyebrow_text != blank %}
+        <div class="ai-benefits-eyebrow-{{ ai_gen_id }}">{{ block.settings.eyebrow_text }}</div>
+      {% endif %}
+      {% if block.settings.title_text != blank %}
+        <h2 class="ai-benefits-title-{{ ai_gen_id }}">{{ block.settings.title_text }}</h2>
+      {% endif %}
+    </header>
+    <div class="ai-benefits-grid-{{ ai_gen_id }}">
+      {% for i in (1..4) %}
+        {% liquid
+          assign benefit_enabled_key = 'benefit_' | append: i | append: '_enabled'
+          assign benefit_title_key = 'benefit_' | append: i | append: '_title'
+          assign benefit_desc_key = 'benefit_' | append: i | append: '_desc'
+          assign benefit_icon_type_key = 'benefit_' | append: i | append: '_icon_type'
+          assign benefit_icon_key = 'benefit_' | append: i | append: '_icon'
+          assign benefit_image_key = 'benefit_' | append: i | append: '_image'
+
+          assign benefit_enabled = block.settings[benefit_enabled_key]
+          assign benefit_title = block.settings[benefit_title_key]
+          assign benefit_desc = block.settings[benefit_desc_key]
+          assign benefit_icon_type = block.settings[benefit_icon_type_key]
+          assign benefit_icon = block.settings[benefit_icon_key]
+          assign benefit_image = block.settings[benefit_image_key]
+        %}
+
+        {% if benefit_enabled %}
+          <div class="ai-benefits-item-{{ ai_gen_id }}">
+            <div class="ai-benefits-icon-{{ ai_gen_id }}">
+              {% if benefit_icon_type == 'image' and benefit_image %}
+                <img
+                  src="{{ benefit_image | image_url: width: 200 }}"
+                  alt="{{ benefit_title | escape }}"
+                  loading="lazy"
+                  width="200"
+                  height="200"
+                >
+              {% elsif benefit_icon_type == 'svg' %}
+                {% if benefit_icon == 'sparkles' %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                  </svg>
+                {% elsif benefit_icon == 'droplet' %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2C8 6 6 9 6 13a6 6 0 0 0 12 0c0-4-2-7-6-11Z"/>
+                  </svg>
+                {% elsif benefit_icon == 'heart' %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 4c-1 2-1 4 0 6"/>
+                    <path d="M15 4c1 2 1 4 0 6"/>
+                    <circle cx="12" cy="16" r="5"/>
+                  </svg>
+                {% elsif benefit_icon == 'globe' %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0ZM12 3v18M3 12h18"/>
+                  </svg>
+                {% elsif benefit_icon == 'leaf' %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                  </svg>
+                {% elsif benefit_icon == 'shield' %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                {% elsif benefit_icon == 'check' %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                {% elsif benefit_icon == 'star' %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                {% elsif benefit_icon == 'award' %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="6"/>
+                    <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+                  </svg>
+                {% elsif benefit_icon == 'box' %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                    <line x1="12" y1="22.08" x2="12" y2="12"/>
+                  </svg>
+                {% elsif benefit_icon == 'truck' %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="1" y="3" width="15" height="13"/>
+                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                    <circle cx="5.5" cy="18.5" r="2.5"/>
+                    <circle cx="18.5" cy="18.5" r="2.5"/>
+                  </svg>
+                {% endif %}
+              {% endif %}
+            </div>
+            {% if benefit_title != blank %}
+              <h3 class="ai-benefits-name-{{ ai_gen_id }}">{{ benefit_title }}</h3>
+            {% endif %}
+            {% if benefit_desc != blank %}
+              <p class="ai-benefits-desc-{{ ai_gen_id }}">{{ benefit_desc }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</benefits-section-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class BenefitsSection{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+      }
+    }
+
+    customElements.define('benefits-section-{{ ai_gen_id }}', BenefitsSection{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Benefits section",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "range",
+      "id": "container_max_width",
+      "label": "Container max width",
+      "min": 600,
+      "max": 1920,
+      "step": 20,
+      "unit": "px",
+      "default": 1280
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Top padding (desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 112
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Bottom padding (desktop)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 112
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_desktop",
+      "label": "Horizontal padding (desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_top_tablet",
+      "label": "Top padding (tablet)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_tablet",
+      "label": "Bottom padding (tablet)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_tablet",
+      "label": "Horizontal padding (tablet)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top padding (mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding (mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "label": "Horizontal padding (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Section colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#2D3A31"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#F9F8F4"
+    },
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "header_margin_bottom_desktop",
+      "label": "Bottom margin (desktop)",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "header_margin_bottom_tablet",
+      "label": "Bottom margin (tablet)",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 55
+    },
+    {
+      "type": "range",
+      "id": "header_margin_bottom_mobile",
+      "label": "Bottom margin (mobile)",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Eyebrow text"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Text",
+      "default": "— Why Verdé"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Color",
+      "default": "#8C9A84"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_font_size_desktop",
+      "label": "Font size (desktop)",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_font_size_tablet",
+      "label": "Font size (tablet)",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_font_size_mobile",
+      "label": "Font size (mobile)",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "select",
+      "id": "eyebrow_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_letter_spacing",
+      "label": "Letter spacing",
+      "default": "0.22em"
+    },
+    {
+      "type": "select",
+      "id": "eyebrow_text_transform",
+      "label": "Text transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_line_height",
+      "label": "Line height",
+      "default": "1.5"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_margin_bottom_desktop",
+      "label": "Bottom margin (desktop)",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_margin_bottom_tablet",
+      "label": "Bottom margin (tablet)",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_margin_bottom_mobile",
+      "label": "Bottom margin (mobile)",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "title_text",
+      "label": "Text",
+      "default": "<p>Pure promises, <em>kept</em>.</p>"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Color",
+      "default": "#F9F8F4"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_desktop",
+      "label": "Font size (desktop)",
+      "min": 16,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_tablet",
+      "label": "Font size (tablet)",
+      "min": 16,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_mobile",
+      "label": "Font size (mobile)",
+      "min": 16,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "title_font_style",
+      "label": "Font style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "text",
+      "id": "title_line_height",
+      "label": "Line height",
+      "default": "1.1"
+    },
+    {
+      "type": "text",
+      "id": "title_letter_spacing",
+      "label": "Letter spacing",
+      "default": "-0.02em"
+    },
+    {
+      "type": "header",
+      "content": "Title emphasis (em tag)"
+    },
+    {
+      "type": "color",
+      "id": "title_em_color",
+      "label": "Color",
+      "default": "#DCCFC2"
+    },
+    {
+      "type": "select",
+      "id": "title_em_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "select",
+      "id": "title_em_font_style",
+      "label": "Font style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "italic"
+    },
+    {
+      "type": "header",
+      "content": "Grid layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns (desktop)",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "label": "Columns (tablet)",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns (mobile)",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_desktop",
+      "label": "Gap (desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_tablet",
+      "label": "Gap (tablet)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_mobile",
+      "label": "Gap (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Benefit item"
+    },
+    {
+      "type": "select",
+      "id": "item_alignment",
+      "label": "Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "item_padding",
+      "label": "Padding",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Icon style"
+    },
+    {
+      "type": "range",
+      "id": "icon_size_desktop",
+      "label": "Size (desktop)",
+      "min": 30,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "default": 76
+    },
+    {
+      "type": "range",
+      "id": "icon_size_tablet",
+      "label": "Size (tablet)",
+      "min": 30,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "default": 68
+    },
+    {
+      "type": "range",
+      "id": "icon_size_mobile",
+      "label": "Size (mobile)",
+      "min": 30,
+      "max": 150,
+      "step": 2,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "icon_margin_bottom_desktop",
+      "label": "Bottom margin (desktop)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "icon_margin_bottom_tablet",
+      "label": "Bottom margin (tablet)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "icon_margin_bottom_mobile",
+      "label": "Bottom margin (mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "icon_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "color",
+      "id": "icon_background",
+      "label": "Background",
+      "default": "rgba(220,207,194,0.12)"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#DCCFC2"
+    },
+    {
+      "type": "range",
+      "id": "icon_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "icon_border_style",
+      "label": "Border style",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color",
+      "id": "icon_border_color",
+      "label": "Border color",
+      "default": "rgba(220,207,194,0.25)"
+    },
+    {
+      "type": "header",
+      "content": "SVG icon"
+    },
+    {
+      "type": "range",
+      "id": "svg_size_desktop",
+      "label": "Size (desktop)",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "svg_size_tablet",
+      "label": "Size (tablet)",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "svg_size_mobile",
+      "label": "Size (mobile)",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "text",
+      "id": "svg_stroke_width",
+      "label": "Stroke width",
+      "default": "1.3"
+    },
+    {
+      "type": "header",
+      "content": "Benefit name"
+    },
+    {
+      "type": "color",
+      "id": "name_color",
+      "label": "Color",
+      "default": "#F9F8F4"
+    },
+    {
+      "type": "range",
+      "id": "name_font_size_desktop",
+      "label": "Font size (desktop)",
+      "min": 12,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 21
+    },
+    {
+      "type": "range",
+      "id": "name_font_size_tablet",
+      "label": "Font size (tablet)",
+      "min": 12,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    },
+    {
+      "type": "range",
+      "id": "name_font_size_mobile",
+      "label": "Font size (mobile)",
+      "min": 12,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "name_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "name_font_style",
+      "label": "Font style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "text",
+      "id": "name_line_height",
+      "label": "Line height",
+      "default": "1.3"
+    },
+    {
+      "type": "text",
+      "id": "name_letter_spacing",
+      "label": "Letter spacing",
+      "default": "0"
+    },
+    {
+      "type": "range",
+      "id": "name_margin_bottom_desktop",
+      "label": "Bottom margin (desktop)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "name_margin_bottom_tablet",
+      "label": "Bottom margin (tablet)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "name_margin_bottom_mobile",
+      "label": "Bottom margin (mobile)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Color",
+      "default": "rgba(249,248,244,0.7)"
+    },
+    {
+      "type": "range",
+      "id": "desc_font_size_desktop",
+      "label": "Font size (desktop)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "desc_font_size_tablet",
+      "label": "Font size (tablet)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "desc_font_size_mobile",
+      "label": "Font size (mobile)",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "desc_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "desc_line_height",
+      "label": "Line height",
+      "default": "1.6"
+    },
+    {
+      "type": "text",
+      "id": "desc_letter_spacing",
+      "label": "Letter spacing",
+      "default": "0"
+    },
+    {
+      "type": "range",
+      "id": "desc_max_width",
+      "label": "Max width",
+      "min": 150,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "default": 240
+    },
+    {
+      "type": "header",
+      "content": "Benefit 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "benefit_1_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "benefit_1_icon_type",
+      "label": "Icon type",
+      "options": [
+        { "value": "svg", "label": "SVG icon" },
+        { "value": "image", "label": "Image" }
+      ],
+      "default": "svg"
+    },
+    {
+      "type": "select",
+      "id": "benefit_1_icon",
+      "label": "SVG icon",
+      "options": [
+        { "value": "sparkles", "label": "Sparkles" },
+        { "value": "droplet", "label": "Droplet" },
+        { "value": "heart", "label": "Heart" },
+        { "value": "globe", "label": "Globe" },
+        { "value": "leaf", "label": "Leaf" },
+        { "value": "shield", "label": "Shield" },
+        { "value": "check", "label": "Check" },
+        { "value": "star", "label": "Star" },
+        { "value": "award", "label": "Award" },
+        { "value": "box", "label": "Box" },
+        { "value": "truck", "label": "Truck" }
+      ],
+      "default": "sparkles"
+    },
+    {
+      "type": "image_picker",
+      "id": "benefit_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1_title",
+      "label": "Title",
+      "default": "Dermatologist Tested"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_1_desc",
+      "label": "Description",
+      "default": "Every formula clinically reviewed for safety and efficacy."
+    },
+    {
+      "type": "header",
+      "content": "Benefit 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "benefit_2_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "benefit_2_icon_type",
+      "label": "Icon type",
+      "options": [
+        { "value": "svg", "label": "SVG icon" },
+        { "value": "image", "label": "Image" }
+      ],
+      "default": "svg"
+    },
+    {
+      "type": "select",
+      "id": "benefit_2_icon",
+      "label": "SVG icon",
+      "options": [
+        { "value": "sparkles", "label": "Sparkles" },
+        { "value": "droplet", "label": "Droplet" },
+        { "value": "heart", "label": "Heart" },
+        { "value": "globe", "label": "Globe" },
+        { "value": "leaf", "label": "Leaf" },
+        { "value": "shield", "label": "Shield" },
+        { "value": "check", "label": "Check" },
+        { "value": "star", "label": "Star" },
+        { "value": "award", "label": "Award" },
+        { "value": "box", "label": "Box" },
+        { "value": "truck", "label": "Truck" }
+      ],
+      "default": "droplet"
+    },
+    {
+      "type": "image_picker",
+      "id": "benefit_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2_title",
+      "label": "Title",
+      "default": "Clean Ingredients"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_2_desc",
+      "label": "Description",
+      "default": "Free from sulfates, parabens and synthetic fragrance."
+    },
+    {
+      "type": "header",
+      "content": "Benefit 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "benefit_3_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "benefit_3_icon_type",
+      "label": "Icon type",
+      "options": [
+        { "value": "svg", "label": "SVG icon" },
+        { "value": "image", "label": "Image" }
+      ],
+      "default": "svg"
+    },
+    {
+      "type": "select",
+      "id": "benefit_3_icon",
+      "label": "SVG icon",
+      "options": [
+        { "value": "sparkles", "label": "Sparkles" },
+        { "value": "droplet", "label": "Droplet" },
+        { "value": "heart", "label": "Heart" },
+        { "value": "globe", "label": "Globe" },
+        { "value": "leaf", "label": "Leaf" },
+        { "value": "shield", "label": "Shield" },
+        { "value": "check", "label": "Check" },
+        { "value": "star", "label": "Star" },
+        { "value": "award", "label": "Award" },
+        { "value": "box", "label": "Box" },
+        { "value": "truck", "label": "Truck" }
+      ],
+      "default": "heart"
+    },
+    {
+      "type": "image_picker",
+      "id": "benefit_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3_title",
+      "label": "Title",
+      "default": "Cruelty Free"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_3_desc",
+      "label": "Description",
+      "default": "Never tested on animals. Leaping Bunny certified."
+    },
+    {
+      "type": "header",
+      "content": "Benefit 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "benefit_4_enabled",
+      "label": "Enable",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "benefit_4_icon_type",
+      "label": "Icon type",
+      "options": [
+        { "value": "svg", "label": "SVG icon" },
+        { "value": "image", "label": "Image" }
+      ],
+      "default": "svg"
+    },
+    {
+      "type": "select",
+      "id": "benefit_4_icon",
+      "label": "SVG icon",
+      "options": [
+        { "value": "sparkles", "label": "Sparkles" },
+        { "value": "droplet", "label": "Droplet" },
+        { "value": "heart", "label": "Heart" },
+        { "value": "globe", "label": "Globe" },
+        { "value": "leaf", "label": "Leaf" },
+        { "value": "shield", "label": "Shield" },
+        { "value": "check", "label": "Check" },
+        { "value": "star", "label": "Star" },
+        { "value": "award", "label": "Award" },
+        { "value": "box", "label": "Box" },
+        { "value": "truck", "label": "Truck" }
+      ],
+      "default": "globe"
+    },
+    {
+      "type": "image_picker",
+      "id": "benefit_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "benefit_4_title",
+      "label": "Title",
+      "default": "Eco Friendly"
+    },
+    {
+      "type": "textarea",
+      "id": "benefit_4_desc",
+      "label": "Description",
+      "default": "Refillable glass, recycled paper, carbon-neutral shipping."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits section"
+    }
+  ]
+}
+{% endschema %}

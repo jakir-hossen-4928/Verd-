@@ -1,0 +1,1502 @@
+
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .vd-tst-{{ ai_gen_id }} {
+    display: block;
+    background: {{ block.settings.section_bg_color }};
+    color: {{ block.settings.text_color }};
+    padding: {{ block.settings.section_padding_top_mobile }}px {{ block.settings.section_padding_left_right_mobile }}px {{ block.settings.section_padding_bottom_mobile }}px;
+    width: 100%;
+  }
+
+  .vd-tst-inner-{{ ai_gen_id }} {
+    max-width: {{ block.settings.container_max_width }}px;
+    margin: 0 auto;
+  }
+
+  .vd-tst-head-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: {{ block.settings.header_gap_mobile }}px;
+    margin-bottom: {{ block.settings.header_margin_bottom_mobile }}px;
+    align-items: end;
+  }
+
+  .vd-tst-eyebrow-{{ ai_gen_id }} {
+    font-size: {{ block.settings.eyebrow_font_size_mobile }}px;
+    letter-spacing: {{ block.settings.eyebrow_letter_spacing }};
+    text-transform: {{ block.settings.eyebrow_text_transform }};
+    color: {{ block.settings.eyebrow_color }};
+    font-weight: {{ block.settings.eyebrow_font_weight }};
+  }
+
+  .vd-tst-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_font_size_mobile }}px;
+    line-height: {{ block.settings.title_line_height }};
+    letter-spacing: {{ block.settings.title_letter_spacing }};
+    margin: {{ block.settings.title_margin_top }}px 0 0;
+    font-weight: {{ block.settings.title_font_weight }};
+    color: {{ block.settings.title_color }};
+  }
+
+  .vd-tst-title-{{ ai_gen_id }} em {
+    font-style: {{ block.settings.title_em_font_style }};
+    color: {{ block.settings.title_em_color }};
+    font-weight: {{ block.settings.title_em_font_weight }};
+  }
+
+  .vd-tst-meta-{{ ai_gen_id }} {
+    color: {{ block.settings.meta_color }};
+    font-size: {{ block.settings.meta_font_size_mobile }}px;
+    line-height: {{ block.settings.meta_line_height }};
+    margin: 0;
+    max-width: {{ block.settings.meta_max_width }}px;
+  }
+
+  .vd-tst-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: {{ block.settings.grid_gap_mobile }}px;
+  }
+
+  .vd-tst-card-{{ ai_gen_id }} {
+    background: {{ block.settings.card_bg_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: {{ block.settings.card_padding_mobile }}px;
+    box-shadow: {{ block.settings.card_shadow_x }}px {{ block.settings.card_shadow_y }}px {{ block.settings.card_shadow_blur }}px {{ block.settings.card_shadow_spread }}px {{ block.settings.card_shadow_color }};
+    transition: transform {{ block.settings.card_hover_duration }}s ease;
+    border: {{ block.settings.card_border_width }}px {{ block.settings.card_border_style }} {{ block.settings.card_border_color }};
+  }
+
+  .vd-tst-card-{{ ai_gen_id }}:hover {
+    transform: translateY({{ block.settings.card_hover_translate }}px);
+  }
+
+  .vd-tst-stars-{{ ai_gen_id }} {
+    display: flex;
+    gap: {{ block.settings.stars_gap }}px;
+    margin-bottom: {{ block.settings.stars_margin_bottom }}px;
+    color: {{ block.settings.stars_color }};
+  }
+
+  .vd-tst-stars-{{ ai_gen_id }} svg {
+    width: {{ block.settings.stars_size_mobile }}px;
+    height: {{ block.settings.stars_size_mobile }}px;
+  }
+
+  .vd-tst-quote-{{ ai_gen_id }} {
+    font-size: {{ block.settings.quote_font_size_mobile }}px;
+    line-height: {{ block.settings.quote_line_height }};
+    margin: 0 0 {{ block.settings.quote_margin_bottom }}px;
+    color: {{ block.settings.quote_color }};
+    font-style: {{ block.settings.quote_font_style }};
+    font-weight: {{ block.settings.quote_font_weight }};
+  }
+
+  .vd-tst-author-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: {{ block.settings.author_gap }}px;
+    padding-top: {{ block.settings.author_padding_top }}px;
+    border-top: {{ block.settings.author_border_width }}px {{ block.settings.author_border_style }} {{ block.settings.author_border_color }};
+  }
+
+  .vd-tst-avatar-{{ ai_gen_id }} {
+    width: {{ block.settings.avatar_size_mobile }}px;
+    height: {{ block.settings.avatar_size_mobile }}px;
+    border-radius: {{ block.settings.avatar_border_radius }}%;
+    background: {{ block.settings.avatar_bg_color }};
+    display: grid;
+    place-items: center;
+    color: {{ block.settings.avatar_text_color }};
+    font-weight: {{ block.settings.avatar_font_weight }};
+    font-size: {{ block.settings.avatar_font_size_mobile }}px;
+    flex-shrink: 0;
+  }
+
+  .vd-tst-name-{{ ai_gen_id }} {
+    font-weight: {{ block.settings.name_font_weight }};
+    font-size: {{ block.settings.name_font_size_mobile }}px;
+    color: {{ block.settings.name_color }};
+  }
+
+  .vd-tst-role-{{ ai_gen_id }} {
+    font-size: {{ block.settings.role_font_size_mobile }}px;
+    color: {{ block.settings.role_color }};
+    letter-spacing: {{ block.settings.role_letter_spacing }};
+  }
+
+  @media (min-width: 700px) {
+    .vd-tst-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_tablet }}, 1fr);
+      gap: {{ block.settings.grid_gap_tablet }}px;
+    }
+
+    .vd-tst-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top_tablet }}px {{ block.settings.section_padding_left_right_tablet }}px {{ block.settings.section_padding_bottom_tablet }}px;
+    }
+
+    .vd-tst-head-{{ ai_gen_id }} {
+      gap: {{ block.settings.header_gap_tablet }}px;
+      margin-bottom: {{ block.settings.header_margin_bottom_tablet }}px;
+    }
+
+    .vd-tst-eyebrow-{{ ai_gen_id }} {
+      font-size: {{ block.settings.eyebrow_font_size_tablet }}px;
+    }
+
+    .vd-tst-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_font_size_tablet }}px;
+    }
+
+    .vd-tst-meta-{{ ai_gen_id }} {
+      font-size: {{ block.settings.meta_font_size_tablet }}px;
+    }
+
+    .vd-tst-card-{{ ai_gen_id }} {
+      padding: {{ block.settings.card_padding_tablet }}px;
+    }
+
+    .vd-tst-stars-{{ ai_gen_id }} svg {
+      width: {{ block.settings.stars_size_tablet }}px;
+      height: {{ block.settings.stars_size_tablet }}px;
+    }
+
+    .vd-tst-quote-{{ ai_gen_id }} {
+      font-size: {{ block.settings.quote_font_size_tablet }}px;
+    }
+
+    .vd-tst-avatar-{{ ai_gen_id }} {
+      width: {{ block.settings.avatar_size_tablet }}px;
+      height: {{ block.settings.avatar_size_tablet }}px;
+      font-size: {{ block.settings.avatar_font_size_tablet }}px;
+    }
+
+    .vd-tst-name-{{ ai_gen_id }} {
+      font-size: {{ block.settings.name_font_size_tablet }}px;
+    }
+
+    .vd-tst-role-{{ ai_gen_id }} {
+      font-size: {{ block.settings.role_font_size_tablet }}px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .vd-tst-{{ ai_gen_id }} {
+      padding: {{ block.settings.section_padding_top }}px {{ block.settings.section_padding_left_right }}px {{ block.settings.section_padding_bottom }}px;
+    }
+
+    .vd-tst-head-{{ ai_gen_id }} {
+      grid-template-columns: {{ block.settings.header_col_left }}fr {{ block.settings.header_col_right }}fr;
+      gap: {{ block.settings.header_gap }}px;
+      margin-bottom: {{ block.settings.header_margin_bottom }}px;
+    }
+
+    .vd-tst-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+      gap: {{ block.settings.grid_gap }}px;
+    }
+
+    {% if block.settings.enable_stagger %}
+      .vd-tst-grid-{{ ai_gen_id }} > :nth-child({{ block.settings.stagger_nth_child }}) {
+        transform: translateY({{ block.settings.stagger_offset }}px);
+      }
+    {% endif %}
+
+    .vd-tst-eyebrow-{{ ai_gen_id }} {
+      font-size: {{ block.settings.eyebrow_font_size }}px;
+    }
+
+    .vd-tst-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_font_size }}px;
+    }
+
+    .vd-tst-meta-{{ ai_gen_id }} {
+      font-size: {{ block.settings.meta_font_size }}px;
+    }
+
+    .vd-tst-card-{{ ai_gen_id }} {
+      padding: {{ block.settings.card_padding }}px;
+    }
+
+    .vd-tst-stars-{{ ai_gen_id }} svg {
+      width: {{ block.settings.stars_size }}px;
+      height: {{ block.settings.stars_size }}px;
+    }
+
+    .vd-tst-quote-{{ ai_gen_id }} {
+      font-size: {{ block.settings.quote_font_size }}px;
+    }
+
+    .vd-tst-avatar-{{ ai_gen_id }} {
+      width: {{ block.settings.avatar_size }}px;
+      height: {{ block.settings.avatar_size }}px;
+      font-size: {{ block.settings.avatar_font_size }}px;
+    }
+
+    .vd-tst-name-{{ ai_gen_id }} {
+      font-size: {{ block.settings.name_font_size }}px;
+    }
+
+    .vd-tst-role-{{ ai_gen_id }} {
+      font-size: {{ block.settings.role_font_size }}px;
+    }
+  }
+{% endstyle %}
+
+<testimonials-{{ ai_gen_id }} class="vd-tst-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="vd-tst-inner-{{ ai_gen_id }}">
+    <header class="vd-tst-head-{{ ai_gen_id }}">
+      <div>
+        {% if block.settings.eyebrow_text != blank %}
+          <div class="vd-tst-eyebrow-{{ ai_gen_id }}">{{ block.settings.eyebrow_text }}</div>
+        {% endif %}
+        {% if block.settings.title_text != blank %}
+          <h2 class="vd-tst-title-{{ ai_gen_id }}">{{ block.settings.title_text }}</h2>
+        {% endif %}
+      </div>
+      {% if block.settings.meta_text != blank %}
+        <p class="vd-tst-meta-{{ ai_gen_id }}">{{ block.settings.meta_text }}</p>
+      {% endif %}
+    </header>
+    <div class="vd-tst-grid-{{ ai_gen_id }}">
+      {% for i in (1..3) %}
+        {% liquid
+          assign quote_key = 'testimonial_' | append: i | append: '_quote'
+          assign name_key = 'testimonial_' | append: i | append: '_name'
+          assign role_key = 'testimonial_' | append: i | append: '_role'
+          assign initial_key = 'testimonial_' | append: i | append: '_initial'
+
+          assign quote = block.settings[quote_key]
+          assign name = block.settings[name_key]
+          assign role = block.settings[role_key]
+          assign initial = block.settings[initial_key]
+        %}
+
+        <article class="vd-tst-card-{{ ai_gen_id }}">
+          <div class="vd-tst-stars-{{ ai_gen_id }}">
+            {% for j in (1..5) %}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="m12 2 3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/>
+              </svg>
+            {% endfor %}
+          </div>
+          {% if quote != blank %}
+            <p class="vd-tst-quote-{{ ai_gen_id }}">"{{ quote }}"</p>
+          {% endif %}
+          <div class="vd-tst-author-{{ ai_gen_id }}">
+            {% if initial != blank %}
+              <div class="vd-tst-avatar-{{ ai_gen_id }}">{{ initial }}</div>
+            {% endif %}
+            <div>
+              {% if name != blank %}
+                <div class="vd-tst-name-{{ ai_gen_id }}">{{ name }}</div>
+              {% endif %}
+              {% if role != blank %}
+                <div class="vd-tst-role-{{ ai_gen_id }}">{{ role }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</testimonials-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class Testimonials{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+      }
+    }
+
+    customElements.define('testimonials-{{ ai_gen_id }}', Testimonials{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section layout"
+    },
+    {
+      "type": "range",
+      "id": "container_max_width",
+      "label": "Container max width",
+      "min": 600,
+      "max": 1920,
+      "step": 20,
+      "unit": "px",
+      "default": 1280
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Background color",
+      "default": "#F9F8F4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#2D3A31"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing - Desktop"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 112
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 112
+    },
+    {
+      "type": "range",
+      "id": "section_padding_left_right",
+      "label": "Padding left/right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Section spacing - Tablet"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_tablet",
+      "label": "Padding top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_tablet",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "section_padding_left_right_tablet",
+      "label": "Padding left/right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Section spacing - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "label": "Padding top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_left_right_mobile",
+      "label": "Padding left/right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Header layout - Desktop"
+    },
+    {
+      "type": "range",
+      "id": "header_col_left",
+      "label": "Left column width",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "header_col_right",
+      "label": "Right column width",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "header_gap",
+      "label": "Gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "header_margin_bottom",
+      "label": "Margin bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "header",
+      "content": "Header layout - Tablet"
+    },
+    {
+      "type": "range",
+      "id": "header_gap_tablet",
+      "label": "Gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "header_margin_bottom_tablet",
+      "label": "Margin bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Header layout - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "header_gap_mobile",
+      "label": "Gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "header_margin_bottom_mobile",
+      "label": "Margin bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Text",
+      "default": "— Loved by Many"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Color",
+      "default": "#8C9A84"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_font_size",
+      "label": "Font size - Desktop",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_font_size_tablet",
+      "label": "Font size - Tablet",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_font_size_mobile",
+      "label": "Font size - Mobile",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "select",
+      "id": "eyebrow_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_letter_spacing",
+      "label": "Letter spacing",
+      "default": "0.22em"
+    },
+    {
+      "type": "select",
+      "id": "eyebrow_text_transform",
+      "label": "Text transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "title_text",
+      "label": "Text",
+      "default": "<p>Words from <em>real</em> skin.</p>"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Color",
+      "default": "#2D3A31"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Font size - Desktop",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 58
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_tablet",
+      "label": "Font size - Tablet",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_mobile",
+      "label": "Font size - Mobile",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "text",
+      "id": "title_line_height",
+      "label": "Line height",
+      "default": "1.05"
+    },
+    {
+      "type": "text",
+      "id": "title_letter_spacing",
+      "label": "Letter spacing",
+      "default": "-0.02em"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_top",
+      "label": "Margin top",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Title emphasis (em tag)"
+    },
+    {
+      "type": "color",
+      "id": "title_em_color",
+      "label": "Color",
+      "default": "#C27B66"
+    },
+    {
+      "type": "select",
+      "id": "title_em_font_style",
+      "label": "Font style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "italic"
+    },
+    {
+      "type": "select",
+      "id": "title_em_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "header",
+      "content": "Meta text"
+    },
+    {
+      "type": "richtext",
+      "id": "meta_text",
+      "label": "Text",
+      "default": "<p>24,000+ five-star reviews from the people who matter most — those who wear our work every day.</p>"
+    },
+    {
+      "type": "color",
+      "id": "meta_color",
+      "label": "Color",
+      "default": "#6b7a72"
+    },
+    {
+      "type": "range",
+      "id": "meta_font_size",
+      "label": "Font size - Desktop",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "meta_font_size_tablet",
+      "label": "Font size - Tablet",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "meta_font_size_mobile",
+      "label": "Font size - Mobile",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "text",
+      "id": "meta_line_height",
+      "label": "Line height",
+      "default": "1.6"
+    },
+    {
+      "type": "range",
+      "id": "meta_max_width",
+      "label": "Max width",
+      "min": 200,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "default": 360
+    },
+    {
+      "type": "header",
+      "content": "Grid layout - Desktop"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_stagger",
+      "label": "Enable stagger effect",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "stagger_nth_child",
+      "label": "Stagger nth child",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "stagger_offset",
+      "label": "Stagger offset",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Grid layout - Tablet"
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "label": "Columns",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_tablet",
+      "label": "Gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Grid layout - Mobile"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_mobile",
+      "label": "Gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "card_border_style",
+      "label": "Border style",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Border color",
+      "default": "#E6E2DA"
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "Padding - Desktop",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "card_padding_tablet",
+      "label": "Padding - Tablet",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "card_padding_mobile",
+      "label": "Padding - Mobile",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Card shadow"
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_x",
+      "label": "Horizontal offset",
+      "min": -50,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_y",
+      "label": "Vertical offset",
+      "min": -50,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_blur",
+      "label": "Blur",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_spread",
+      "label": "Spread",
+      "min": -50,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": -15
+    },
+    {
+      "type": "color",
+      "id": "card_shadow_color",
+      "label": "Shadow color",
+      "default": "rgba(45,58,49,0.12)"
+    },
+    {
+      "type": "header",
+      "content": "Card hover effect"
+    },
+    {
+      "type": "range",
+      "id": "card_hover_translate",
+      "label": "Translate Y",
+      "min": -50,
+      "max": 0,
+      "step": 1,
+      "unit": "px",
+      "default": -4
+    },
+    {
+      "type": "text",
+      "id": "card_hover_duration",
+      "label": "Duration",
+      "default": "0.5"
+    },
+    {
+      "type": "header",
+      "content": "Stars"
+    },
+    {
+      "type": "color",
+      "id": "stars_color",
+      "label": "Color",
+      "default": "#C27B66"
+    },
+    {
+      "type": "range",
+      "id": "stars_size",
+      "label": "Size - Desktop",
+      "min": 8,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "stars_size_tablet",
+      "label": "Size - Tablet",
+      "min": 8,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "stars_size_mobile",
+      "label": "Size - Mobile",
+      "min": 8,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "stars_gap",
+      "label": "Gap",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "stars_margin_bottom",
+      "label": "Margin bottom",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Quote"
+    },
+    {
+      "type": "color",
+      "id": "quote_color",
+      "label": "Color",
+      "default": "#2D3A31"
+    },
+    {
+      "type": "range",
+      "id": "quote_font_size",
+      "label": "Font size - Desktop",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "quote_font_size_tablet",
+      "label": "Font size - Tablet",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "quote_font_size_mobile",
+      "label": "Font size - Mobile",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "quote_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "quote_font_style",
+      "label": "Font style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "italic"
+    },
+    {
+      "type": "text",
+      "id": "quote_line_height",
+      "label": "Line height",
+      "default": "1.5"
+    },
+    {
+      "type": "range",
+      "id": "quote_margin_bottom",
+      "label": "Margin bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "header",
+      "content": "Author section"
+    },
+    {
+      "type": "range",
+      "id": "author_gap",
+      "label": "Gap",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "author_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "author_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "author_border_style",
+      "label": "Border style",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "color",
+      "id": "author_border_color",
+      "label": "Border color",
+      "default": "#E6E2DA"
+    },
+    {
+      "type": "header",
+      "content": "Avatar"
+    },
+    {
+      "type": "color",
+      "id": "avatar_bg_color",
+      "label": "Background color",
+      "default": "#DCCFC2"
+    },
+    {
+      "type": "color",
+      "id": "avatar_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "avatar_size",
+      "label": "Size - Desktop",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "avatar_size_tablet",
+      "label": "Size - Tablet",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "avatar_size_mobile",
+      "label": "Size - Mobile",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "avatar_font_size",
+      "label": "Font size - Desktop",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "avatar_font_size_tablet",
+      "label": "Font size - Tablet",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "avatar_font_size_mobile",
+      "label": "Font size - Mobile",
+      "min": 10,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "avatar_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "avatar_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Name"
+    },
+    {
+      "type": "color",
+      "id": "name_color",
+      "label": "Color",
+      "default": "#2D3A31"
+    },
+    {
+      "type": "range",
+      "id": "name_font_size",
+      "label": "Font size - Desktop",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "name_font_size_tablet",
+      "label": "Font size - Tablet",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "name_font_size_mobile",
+      "label": "Font size - Mobile",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "name_font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "header",
+      "content": "Role"
+    },
+    {
+      "type": "color",
+      "id": "role_color",
+      "label": "Color",
+      "default": "#8C9A84"
+    },
+    {
+      "type": "range",
+      "id": "role_font_size",
+      "label": "Font size - Desktop",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "role_font_size_tablet",
+      "label": "Font size - Tablet",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "role_font_size_mobile",
+      "label": "Font size - Mobile",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "text",
+      "id": "role_letter_spacing",
+      "label": "Letter spacing",
+      "default": "0.08em"
+    },
+    {
+      "type": "header",
+      "content": "Testimonial 1"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_1_quote",
+      "label": "Quote",
+      "default": "My skin has never felt this calm. The serum became my morning meditation."
+    },
+    {
+      "type": "text",
+      "id": "testimonial_1_name",
+      "label": "Name",
+      "default": "Amélie R."
+    },
+    {
+      "type": "text",
+      "id": "testimonial_1_role",
+      "label": "Role",
+      "default": "Verified Customer"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_1_initial",
+      "label": "Initial",
+      "default": "A"
+    },
+    {
+      "type": "header",
+      "content": "Testimonial 2"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_2_quote",
+      "label": "Quote",
+      "default": "Finally a clean brand that actually works. The olive stone cream is unreal."
+    },
+    {
+      "type": "text",
+      "id": "testimonial_2_name",
+      "label": "Name",
+      "default": "Maya K."
+    },
+    {
+      "type": "text",
+      "id": "testimonial_2_role",
+      "label": "Role",
+      "default": "Verified Customer"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_2_initial",
+      "label": "Initial",
+      "default": "M"
+    },
+    {
+      "type": "header",
+      "content": "Testimonial 3"
+    },
+    {
+      "type": "textarea",
+      "id": "testimonial_3_quote",
+      "label": "Quote",
+      "default": "Every product feels like a tiny ritual. Beautifully made, beautifully scented."
+    },
+    {
+      "type": "text",
+      "id": "testimonial_3_name",
+      "label": "Name",
+      "default": "Sofia L."
+    },
+    {
+      "type": "text",
+      "id": "testimonial_3_role",
+      "label": "Role",
+      "default": "Verified Customer"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_3_initial",
+      "label": "Initial",
+      "default": "S"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials"
+    }
+  ]
+}
+{% endschema %}

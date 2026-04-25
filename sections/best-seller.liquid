@@ -1,0 +1,1817 @@
+{% comment %}
+  Best Sellers Section
+  Fully customizable with responsive controls for mobile & desktop
+{% endcomment %}
+
+{%- liquid
+  assign desktop_columns = section.settings.desktop_columns | at_least: 1 | at_most: 6
+  assign tablet_columns = section.settings.tablet_columns | at_least: 1 | at_most: 6
+  assign mobile_columns = section.settings.mobile_columns | at_least: 1 | at_most: 6
+
+  assign desktop_gap = section.settings.desktop_gap | at_least: 0 | at_most: 100
+  assign tablet_gap = section.settings.tablet_gap | at_least: 0 | at_most: 100
+  assign mobile_gap = section.settings.mobile_gap | at_least: 0 | at_most: 100
+
+  assign desktop_image_width = section.settings.desktop_image_width | at_least: 100 | at_most: 2000
+  assign desktop_image_height = section.settings.desktop_image_height | at_least: 100 | at_most: 2000
+  assign tablet_image_width = section.settings.tablet_image_width | at_least: 100 | at_most: 2000
+  assign tablet_image_height = section.settings.tablet_image_height | at_least: 100 | at_most: 2000
+  assign mobile_image_width = section.settings.mobile_image_width | at_least: 100 | at_most: 2000
+  assign mobile_image_height = section.settings.mobile_image_height | at_least: 100 | at_most: 2000
+
+  assign desktop_aspect_ratio = section.settings.desktop_aspect_ratio | divided_by: 100.0
+  assign tablet_aspect_ratio = section.settings.tablet_aspect_ratio | divided_by: 100.0
+  assign mobile_aspect_ratio = section.settings.mobile_aspect_ratio | divided_by: 100.0
+
+  assign desktop_heading_font_size = section.settings.desktop_heading_font_size | at_least: 12 | at_most: 120
+  assign tablet_heading_font_size = section.settings.tablet_heading_font_size | at_least: 12 | at_most: 120
+  assign mobile_heading_font_size = section.settings.mobile_heading_font_size | at_least: 12 | at_most: 120
+
+  assign desktop_eyebrow_font_size = section.settings.desktop_eyebrow_font_size | at_least: 8 | at_most: 40
+  assign tablet_eyebrow_font_size = section.settings.tablet_eyebrow_font_size | at_least: 8 | at_most: 40
+  assign mobile_eyebrow_font_size = section.settings.mobile_eyebrow_font_size | at_least: 8 | at_most: 40
+
+  assign desktop_product_name_size = section.settings.desktop_product_name_size | at_least: 10 | at_most: 60
+  assign tablet_product_name_size = section.settings.tablet_product_name_size | at_least: 10 | at_most: 60
+  assign mobile_product_name_size = section.settings.mobile_product_name_size | at_least: 10 | at_most: 60
+
+  assign desktop_product_desc_size = section.settings.desktop_product_desc_size | at_least: 8 | at_most: 40
+  assign tablet_product_desc_size = section.settings.tablet_product_desc_size | at_least: 8 | at_most: 40
+  assign mobile_product_desc_size = section.settings.mobile_product_desc_size | at_least: 8 | at_most: 40
+
+  assign desktop_price_size = section.settings.desktop_price_size | at_least: 10 | at_most: 60
+  assign tablet_price_size = section.settings.tablet_price_size | at_least: 10 | at_most: 60
+  assign mobile_price_size = section.settings.mobile_price_size | at_least: 10 | at_most: 60
+
+  assign desktop_button_size = section.settings.desktop_button_size | at_least: 8 | at_most: 40
+  assign tablet_button_size = section.settings.tablet_button_size | at_least: 8 | at_most: 40
+  assign mobile_button_size = section.settings.mobile_button_size | at_least: 8 | at_most: 40
+
+  assign desktop_heading_spacing = section.settings.desktop_heading_spacing | at_least: 0 | at_most: 120
+  assign tablet_heading_spacing = section.settings.tablet_heading_spacing | at_least: 0 | at_most: 120
+  assign mobile_heading_spacing = section.settings.mobile_heading_spacing | at_least: 0 | at_most: 120
+
+  assign desktop_card_padding = section.settings.desktop_card_padding | at_least: 0 | at_most: 80
+  assign tablet_card_padding = section.settings.tablet_card_padding | at_least: 0 | at_most: 80
+  assign mobile_card_padding = section.settings.mobile_card_padding | at_least: 0 | at_most: 80
+
+  assign desktop_section_padding = section.settings.desktop_section_padding | at_least: 0 | at_most: 200
+  assign tablet_section_padding = section.settings.tablet_section_padding | at_least: 0 | at_most: 200
+  assign mobile_section_padding = section.settings.mobile_section_padding | at_least: 0 | at_most: 200
+
+  assign desktop_button_padding_h = section.settings.desktop_button_padding_h | at_least: 4 | at_most: 60
+  assign desktop_button_padding_v = section.settings.desktop_button_padding_v | at_least: 4 | at_most: 40
+  assign tablet_button_padding_h = section.settings.tablet_button_padding_h | at_least: 4 | at_most: 60
+  assign tablet_button_padding_v = section.settings.tablet_button_padding_v | at_least: 4 | at_most: 40
+  assign mobile_button_padding_h = section.settings.mobile_button_padding_h | at_least: 4 | at_most: 60
+  assign mobile_button_padding_v = section.settings.mobile_button_padding_v | at_least: 4 | at_most: 40
+
+  assign desktop_title_letter_spacing = section.settings.desktop_title_letter_spacing | at_least: -5 | at_most: 30
+  assign tablet_title_letter_spacing = section.settings.tablet_title_letter_spacing | at_least: -5 | at_most: 30
+  assign mobile_title_letter_spacing = section.settings.mobile_title_letter_spacing | at_least: -5 | at_most: 30
+
+  assign desktop_eyebrow_letter_spacing = section.settings.desktop_eyebrow_letter_spacing | at_least: 0 | at_most: 30
+  assign tablet_eyebrow_letter_spacing = section.settings.tablet_eyebrow_letter_spacing | at_least: 0 | at_most: 30
+  assign mobile_eyebrow_letter_spacing = section.settings.mobile_eyebrow_letter_spacing | at_least: 0 | at_most: 30
+
+  assign desktop_border_radius = section.settings.desktop_border_radius | at_least: 0 | at_most: 100
+  assign tablet_border_radius = section.settings.tablet_border_radius | at_least: 0 | at_most: 100
+  assign mobile_border_radius = section.settings.mobile_border_radius | at_least: 0 | at_most: 100
+
+  assign desktop_image_radius = section.settings.desktop_image_radius | at_least: 0 | at_most: 100
+  assign tablet_image_radius = section.settings.tablet_image_radius | at_least: 0 | at_most: 100
+  assign mobile_image_radius = section.settings.mobile_image_radius | at_least: 0 | at_most: 100
+-%}
+
+<div id="bestsellers-{{ section.id }}" class="vd-bestsellers" data-section-id="{{ section.id }}">
+  <div class="vd-bs-container">
+    <div class="vd-bs-header">
+      {% if section.settings.eyebrow_text != blank %}
+        <div class="vd-bs-eyebrow">{{ section.settings.eyebrow_text }}</div>
+      {% endif %}
+      <h2 class="vd-bs-title">
+        {% if section.settings.heading_prefix != blank %}
+          <span>{{ section.settings.heading_prefix }}</span>
+        {% endif %}
+        {% if section.settings.heading_emphasized != blank %}
+          <em>{{ section.settings.heading_emphasized }}</em>
+        {% endif %}
+        {% if section.settings.heading_suffix != blank %}
+          <span>{{ section.settings.heading_suffix }}</span>
+        {% endif %}
+      </h2>
+    </div>
+
+    <div class="vd-bs-grid">
+      {% for block in section.blocks limit: section.settings.max_products %}
+        {%- liquid
+          assign product_image = block.settings.product_image
+          assign product_title = block.settings.product_title
+          assign product_tag = block.settings.product_tag
+          assign product_description = block.settings.product_description
+          assign product_price = block.settings.product_price
+          assign compare_price = block.settings.compare_price
+          assign button_text = block.settings.button_text
+          assign product_url = block.settings.product_url
+
+          if product_image == blank
+            assign product_image = 'product-1' | placeholder_svg_tag: 'placeholder-svg'
+          else
+            assign product_image = product_image | img_url: 'master'
+          endif
+        -%}
+        <div class="vd-bs-product" {{ block.shopify_attributes }}>
+          <div class="vd-prod-image-wrapper">
+            <div class="vd-prod-image">
+              {% if product_image != blank %}
+                <img src="{{ product_image }}" alt="{{ product_title | escape }}" loading="lazy" width="800" height="960">
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </div>
+          </div>
+          {% if product_tag != blank %}
+            <div class="vd-prod-tag">{{ product_tag }}</div>
+          {% endif %}
+          <h3 class="vd-prod-name">{{ product_title }}</h3>
+          <p class="vd-prod-desc">{{ product_description }}</p>
+          <div class="vd-prod-footer">
+            <div class="vd-prod-price-wrapper">
+              <span class="vd-prod-price">{{ product_price }}</span>
+              {% if compare_price != blank %}
+                <span class="vd-prod-compare">{{ compare_price }}</span>
+              {% endif %}
+            </div>
+            <a href="{{ product_url }}" class="vd-prod-btn">
+              {{ button_text | default: 'Shop Now' }}
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  #bestsellers-{{ section.id }} {
+    --vd-bs-bg: {{ section.settings.section_bg_color }};
+    --vd-bs-text-color: {{ section.settings.section_text_color }};
+    --vd-bs-font-family: {{ section.settings.section_font_family | default: "'Source Sans 3', system-ui, sans-serif" }};
+    --vd-bs-heading-font: {{ section.settings.heading_font_family | default: "'Playfair Display', serif" }};
+    --vd-bs-card-bg: {{ section.settings.card_bg_color }};
+    --vd-bs-card-text: {{ section.settings.card_text_color }};
+    --vd-bs-card-desc: {{ section.settings.card_desc_color }};
+    --vd-bs-tag-color: {{ section.settings.tag_color }};
+    --vd-bs-price-color: {{ section.settings.price_color }};
+    --vd-bs-border-color: {{ section.settings.border_color }};
+    --vd-bs-btn-bg: {{ section.settings.button_bg_color }};
+    --vd-bs-btn-text: {{ section.settings.button_text_color }};
+    --vd-bs-btn-hover-bg: {{ section.settings.button_hover_bg }};
+    --vd-bs-btn-hover-text: {{ section.settings.button_hover_text }};
+    --vd-bs-accent-color: {{ section.settings.accent_color }};
+    --vd-bs-image-overlay: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
+
+    /* Desktop styles */
+    --vd-bs-desktop-columns: {{ desktop_columns }};
+    --vd-bs-desktop-gap: {{ desktop_gap }}px;
+    --vd-bs-desktop-image-width: {{ desktop_image_width }}px;
+    --vd-bs-desktop-image-height: {{ desktop_image_height }}px;
+    --vd-bs-desktop-aspect: {{ desktop_aspect_ratio }};
+    --vd-bs-desktop-heading-size: {{ desktop_heading_font_size }}px;
+    --vd-bs-desktop-eyebrow-size: {{ desktop_eyebrow_font_size }}px;
+    --vd-bs-desktop-prod-name-size: {{ desktop_product_name_size }}px;
+    --vd-bs-desktop-prod-desc-size: {{ desktop_product_desc_size }}px;
+    --vd-bs-desktop-price-size: {{ desktop_price_size }}px;
+    --vd-bs-desktop-btn-size: {{ desktop_button_size }}px;
+    --vd-bs-desktop-heading-margin: {{ desktop_heading_spacing }}px;
+    --vd-bs-desktop-card-padding: {{ desktop_card_padding }}px;
+    --vd-bs-desktop-section-padding: {{ desktop_section_padding }}px;
+    --vd-bs-desktop-btn-pad-h: {{ desktop_button_padding_h }}px;
+    --vd-bs-desktop-btn-pad-v: {{ desktop_button_padding_v }}px;
+    --vd-bs-desktop-title-spacing: {{ desktop_title_letter_spacing }}px;
+    --vd-bs-desktop-eyebrow-spacing: {{ desktop_eyebrow_letter_spacing }}px;
+    --vd-bs-desktop-border-radius: {{ desktop_border_radius }}px;
+    --vd-bs-desktop-image-radius: {{ desktop_image_radius }}px;
+
+    /* Tablet styles */
+    --vd-bs-tablet-columns: {{ tablet_columns }};
+    --vd-bs-tablet-gap: {{ tablet_gap }}px;
+    --vd-bs-tablet-image-width: {{ tablet_image_width }}px;
+    --vd-bs-tablet-image-height: {{ tablet_image_height }}px;
+    --vd-bs-tablet-aspect: {{ tablet_aspect_ratio }};
+    --vd-bs-tablet-heading-size: {{ tablet_heading_font_size }}px;
+    --vd-bs-tablet-eyebrow-size: {{ tablet_eyebrow_font_size }}px;
+    --vd-bs-tablet-prod-name-size: {{ tablet_product_name_size }}px;
+    --vd-bs-tablet-prod-desc-size: {{ tablet_product_desc_size }}px;
+    --vd-bs-tablet-price-size: {{ tablet_price_size }}px;
+    --vd-bs-tablet-btn-size: {{ tablet_button_size }}px;
+    --vd-bs-tablet-heading-margin: {{ tablet_heading_spacing }}px;
+    --vd-bs-tablet-card-padding: {{ tablet_card_padding }}px;
+    --vd-bs-tablet-section-padding: {{ tablet_section_padding }}px;
+    --vd-bs-tablet-btn-pad-h: {{ tablet_button_padding_h }}px;
+    --vd-bs-tablet-btn-pad-v: {{ tablet_button_padding_v }}px;
+    --vd-bs-tablet-title-spacing: {{ tablet_title_letter_spacing }}px;
+    --vd-bs-tablet-eyebrow-spacing: {{ tablet_eyebrow_letter_spacing }}px;
+    --vd-bs-tablet-border-radius: {{ tablet_border_radius }}px;
+    --vd-bs-tablet-image-radius: {{ tablet_image_radius }}px;
+
+    /* Mobile styles */
+    --vd-bs-mobile-columns: {{ mobile_columns }};
+    --vd-bs-mobile-gap: {{ mobile_gap }}px;
+    --vd-bs-mobile-image-width: {{ mobile_image_width }}px;
+    --vd-bs-mobile-image-height: {{ mobile_image_height }}px;
+    --vd-bs-mobile-aspect: {{ mobile_aspect_ratio }};
+    --vd-bs-mobile-heading-size: {{ mobile_heading_font_size }}px;
+    --vd-bs-mobile-eyebrow-size: {{ mobile_eyebrow_font_size }}px;
+    --vd-bs-mobile-prod-name-size: {{ mobile_product_name_size }}px;
+    --vd-bs-mobile-prod-desc-size: {{ mobile_product_desc_size }}px;
+    --vd-bs-mobile-price-size: {{ mobile_price_size }}px;
+    --vd-bs-mobile-btn-size: {{ mobile_button_size }}px;
+    --vd-bs-mobile-heading-margin: {{ mobile_heading_spacing }}px;
+    --vd-bs-mobile-card-padding: {{ mobile_card_padding }}px;
+    --vd-bs-mobile-section-padding: {{ mobile_section_padding }}px;
+    --vd-bs-mobile-btn-pad-h: {{ mobile_button_padding_h }}px;
+    --vd-bs-mobile-btn-pad-v: {{ mobile_button_padding_v }}px;
+    --vd-bs-mobile-title-spacing: {{ mobile_title_letter_spacing }}px;
+    --vd-bs-mobile-eyebrow-spacing: {{ mobile_eyebrow_letter_spacing }}px;
+    --vd-bs-mobile-border-radius: {{ mobile_border_radius }}px;
+    --vd-bs-mobile-image-radius: {{ mobile_image_radius }}px;
+
+    background: var(--vd-bs-bg);
+    color: var(--vd-bs-text-color);
+    font-family: var(--vd-bs-font-family);
+  }
+
+  #bestsellers-{{ section.id }} .vd-bs-container {
+    max-width: {{ section.settings.section_max_width }}px;
+    margin: 0 auto;
+    padding: 0 {{ section.settings.container_padding }}px;
+  }
+
+  #bestsellers-{{ section.id }} .vd-bs-header {
+    text-align: {{ section.settings.header_alignment }};
+    margin-bottom: var(--vd-bs-desktop-heading-margin);
+  }
+
+  #bestsellers-{{ section.id }} .vd-bs-eyebrow {
+    font-size: var(--vd-bs-desktop-eyebrow-size);
+    letter-spacing: var(--vd-bs-desktop-eyebrow-spacing);
+    text-transform: {{ section.settings.eyebrow_transform }};
+    color: var(--vd-bs-tag-color);
+    line-height: 1.3;
+  }
+
+  #bestsellers-{{ section.id }} .vd-bs-title {
+    font-family: var(--vd-bs-heading-font);
+    font-weight: {{ section.settings.title_font_weight }};
+    font-size: var(--vd-bs-desktop-heading-size);
+    letter-spacing: var(--vd-bs-desktop-title-spacing);
+    line-height: {{ section.settings.title_line_height }};
+    margin: {{ section.settings.title_margin_top }}px 0 0 0;
+  }
+
+  #bestsellers-{{ section.id }} .vd-bs-title em {
+    font-style: italic;
+    color: var(--vd-bs-accent-color);
+    font-weight: {{ section.settings.emphasized_weight }};
+  }
+
+  #bestsellers-{{ section.id }} .vd-bs-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--vd-bs-desktop-columns), 1fr);
+    gap: var(--vd-bs-desktop-gap);
+    padding: var(--vd-bs-desktop-section-padding) 0;
+  }
+
+  #bestsellers-{{ section.id }} .vd-bs-product {
+    background: var(--vd-bs-card-bg);
+    border-radius: var(--vd-bs-desktop-border-radius);
+    padding: var(--vd-bs-desktop-card-padding);
+    transition: transform {{ section.settings.hover_animation_speed }}s ease, box-shadow {{ section.settings.hover_animation_speed }}s ease;
+    border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_border_color }};
+    {% if section.settings.card_shadow %}box-shadow: 0 {{ section.settings.card_shadow_offset }}px {{ section.settings.card_shadow_blur }}px rgba(0,0,0,{{ section.settings.card_shadow_opacity | divided_by: 100.0 }});{% endif %}
+  }
+
+  #bestsellers-{{ section.id }} .vd-bs-product:hover {
+    transform: translateY(-{{ section.settings.hover_translate_y }}px);
+    box-shadow: 0 {{ section.settings.hover_shadow_offset }}px {{ section.settings.hover_shadow_blur }}px rgba(0,0,0,{{ section.settings.hover_shadow_opacity | divided_by: 100.0 }});
+  }
+
+  #bestsellers-{{ section.id }} .vd-prod-image-wrapper {
+    margin-bottom: {{ section.settings.image_margin_bottom }}px;
+  }
+
+  #bestsellers-{{ section.id }} .vd-prod-image {
+    aspect-ratio: var(--vd-bs-desktop-aspect);
+    width: 100%;
+    max-width: var(--vd-bs-desktop-image-width);
+    overflow: hidden;
+    border-radius: var(--vd-bs-desktop-image-radius);
+    background: {{ section.settings.image_placeholder_bg }};
+    {% if section.settings.image_border %}border: {{ section.settings.image_border_width }}px solid {{ section.settings.image_border_color }};{% endif %}
+    position: relative;
+  }
+
+  #bestsellers-{{ section.id }} .vd-prod-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: {{ section.settings.image_overlay_color }};
+    opacity: var(--vd-bs-image-overlay);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  #bestsellers-{{ section.id }} .vd-prod-image img,
+  #bestsellers-{{ section.id }} .vd-prod-image .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: {{ section.settings.image_object_fit }};
+    display: block;
+    transition: transform {{ section.settings.image_hover_speed }}s ease;
+  }
+
+  #bestsellers-{{ section.id }} .vd-bs-product:hover .vd-prod-image img {
+    transform: scale({{ section.settings.image_scale_on_hover }});
+  }
+
+  #bestsellers-{{ section.id }} .vd-prod-tag {
+    font-size: var(--vd-bs-desktop-eyebrow-size);
+    letter-spacing: var(--vd-bs-desktop-eyebrow-spacing);
+    text-transform: {{ section.settings.eyebrow_transform }};
+    color: var(--vd-bs-tag-color);
+    margin-bottom: {{ section.settings.tag_margin_bottom }}px;
+  }
+
+  #bestsellers-{{ section.id }} .vd-prod-name {
+    font-family: var(--vd-bs-heading-font);
+    font-size: var(--vd-bs-desktop-prod-name-size);
+    font-weight: {{ section.settings.product_name_weight }};
+    margin: {{ section.settings.product_name_margin_top }}px 0 {{ section.settings.product_name_margin_bottom }}px;
+    line-height: {{ section.settings.product_name_line_height }};
+    color: var(--vd-bs-card-text);
+  }
+
+  #bestsellers-{{ section.id }} .vd-prod-desc {
+    font-size: var(--vd-bs-desktop-prod-desc-size);
+    line-height: {{ section.settings.desc_line_height }};
+    color: var(--vd-bs-card-desc);
+    margin: 0 0 {{ section.settings.desc_margin_bottom }}px;
+  }
+
+  #bestsellers-{{ section.id }} .vd-prod-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: {{ section.settings.footer_gap }}px;
+    padding-top: {{ section.settings.footer_padding_top }}px;
+    border-top: {{ section.settings.footer_border_width }}px {{ section.settings.footer_border_style }} var(--vd-bs-border-color);
+    flex-direction: {{ section.settings.footer_direction }};
+  }
+
+  #bestsellers-{{ section.id }} .vd-prod-price-wrapper {
+    display: flex;
+    align-items: center;
+    gap: {{ section.settings.price_gap }}px;
+    flex-wrap: wrap;
+  }
+
+  #bestsellers-{{ section.id }} .vd-prod-price {
+    font-family: {{ section.settings.price_font_family }};
+    font-size: var(--vd-bs-desktop-price-size);
+    font-weight: {{ section.settings.price_font_weight }};
+    color: var(--vd-bs-price-color);
+  }
+
+  #bestsellers-{{ section.id }} .vd-prod-compare {
+    font-size: calc(var(--vd-bs-desktop-price-size) * 0.8);
+    text-decoration: line-through;
+    color: var(--vd-bs-card-desc);
+  }
+
+  #bestsellers-{{ section.id }} .vd-prod-btn {
+    background: var(--vd-bs-btn-bg);
+    color: var(--vd-bs-btn-text);
+    border: {{ section.settings.button_border_width }}px solid {{ section.settings.button_border_color }};
+    padding: var(--vd-bs-desktop-btn-pad-v) var(--vd-bs-desktop-btn-pad-h);
+    border-radius: {{ section.settings.button_border_radius }}px;
+    font-size: var(--vd-bs-desktop-btn-size);
+    letter-spacing: {{ section.settings.button_letter_spacing }}px;
+    text-transform: {{ section.settings.button_transform }};
+    cursor: pointer;
+    transition: all {{ section.settings.button_transition_speed }}s ease;
+    font-family: inherit;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: {{ section.settings.button_font_weight }};
+    text-align: center;
+    {% if section.settings.button_full_width %}width: 100%;{% endif %}
+  }
+
+  #bestsellers-{{ section.id }} .vd-prod-btn:hover {
+    background: var(--vd-bs-btn-hover-bg);
+    color: var(--vd-bs-btn-hover-text);
+    border-color: {{ section.settings.button_hover_border_color }};
+    transform: translateY(-{{ section.settings.button_hover_translate }}px);
+  }
+
+  /* Tablet Breakpoint */
+  @media screen and (max-width: 1023px) {
+    #bestsellers-{{ section.id }} .vd-bs-grid {
+      grid-template-columns: repeat(var(--vd-bs-tablet-columns), 1fr);
+      gap: var(--vd-bs-tablet-gap);
+      padding: var(--vd-bs-tablet-section-padding) 0;
+    }
+
+    #bestsellers-{{ section.id }} .vd-bs-header {
+      margin-bottom: var(--vd-bs-tablet-heading-margin);
+    }
+
+    #bestsellers-{{ section.id }} .vd-bs-eyebrow {
+      font-size: var(--vd-bs-tablet-eyebrow-size);
+      letter-spacing: var(--vd-bs-tablet-eyebrow-spacing);
+    }
+
+    #bestsellers-{{ section.id }} .vd-bs-title {
+      font-size: var(--vd-bs-tablet-heading-size);
+      letter-spacing: var(--vd-bs-tablet-title-spacing);
+    }
+
+    #bestsellers-{{ section.id }} .vd-bs-product {
+      padding: var(--vd-bs-tablet-card-padding);
+      border-radius: var(--vd-bs-tablet-border-radius);
+    }
+
+    #bestsellers-{{ section.id }} .vd-prod-image {
+      aspect-ratio: var(--vd-bs-tablet-aspect);
+      max-width: var(--vd-bs-tablet-image-width);
+      border-radius: var(--vd-bs-tablet-image-radius);
+    }
+
+    #bestsellers-{{ section.id }} .vd-prod-tag {
+      font-size: var(--vd-bs-tablet-eyebrow-size);
+      letter-spacing: var(--vd-bs-tablet-eyebrow-spacing);
+    }
+
+    #bestsellers-{{ section.id }} .vd-prod-name {
+      font-size: var(--vd-bs-tablet-prod-name-size);
+    }
+
+    #bestsellers-{{ section.id }} .vd-prod-desc {
+      font-size: var(--vd-bs-tablet-prod-desc-size);
+    }
+
+    #bestsellers-{{ section.id }} .vd-prod-price {
+      font-size: var(--vd-bs-tablet-price-size);
+    }
+
+    #bestsellers-{{ section.id }} .vd-prod-compare {
+      font-size: calc(var(--vd-bs-tablet-price-size) * 0.8);
+    }
+
+    #bestsellers-{{ section.id }} .vd-prod-btn {
+      padding: var(--vd-bs-tablet-btn-pad-v) var(--vd-bs-tablet-btn-pad-h);
+      font-size: var(--vd-bs-tablet-btn-size);
+    }
+  }
+
+  /* Mobile Breakpoint */
+  @media screen and (max-width: 639px) {
+    #bestsellers-{{ section.id }} .vd-bs-grid {
+      grid-template-columns: repeat(var(--vd-bs-mobile-columns), 1fr);
+      gap: var(--vd-bs-mobile-gap);
+      padding: var(--vd-bs-mobile-section-padding) 0;
+    }
+
+    #bestsellers-{{ section.id }} .vd-bs-header {
+      margin-bottom: var(--vd-bs-mobile-heading-margin);
+    }
+
+    #bestsellers-{{ section.id }} .vd-bs-eyebrow {
+      font-size: var(--vd-bs-mobile-eyebrow-size);
+      letter-spacing: var(--vd-bs-mobile-eyebrow-spacing);
+    }
+
+    #bestsellers-{{ section.id }} .vd-bs-title {
+      font-size: var(--vd-bs-mobile-heading-size);
+      letter-spacing: var(--vd-bs-mobile-title-spacing);
+    }
+
+    #bestsellers-{{ section.id }} .vd-bs-product {
+      padding: var(--vd-bs-mobile-card-padding);
+      border-radius: var(--vd-bs-mobile-border-radius);
+    }
+
+    #bestsellers-{{ section.id }} .vd-prod-image {
+      aspect-ratio: var(--vd-bs-mobile-aspect);
+      max-width: var(--vd-bs-mobile-image-width);
+      border-radius: var(--vd-bs-mobile-image-radius);
+    }
+
+    #bestsellers-{{ section.id }} .vd-prod-tag {
+      font-size: var(--vd-bs-mobile-eyebrow-size);
+      letter-spacing: var(--vd-bs-mobile-eyebrow-spacing);
+    }
+
+    #bestsellers-{{ section.id }} .vd-prod-name {
+      font-size: var(--vd-bs-mobile-prod-name-size);
+    }
+
+    #bestsellers-{{ section.id }} .vd-prod-desc {
+      font-size: var(--vd-bs-mobile-prod-desc-size);
+    }
+
+    #bestsellers-{{ section.id }} .vd-prod-price {
+      font-size: var(--vd-bs-mobile-price-size);
+    }
+
+    #bestsellers-{{ section.id }} .vd-prod-compare {
+      font-size: calc(var(--vd-bs-mobile-price-size) * 0.8);
+    }
+
+    #bestsellers-{{ section.id }} .vd-prod-btn {
+      padding: var(--vd-bs-mobile-btn-pad-v) var(--vd-bs-mobile-btn-pad-h);
+      font-size: var(--vd-bs-mobile-btn-size);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Best Sellers Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "📐 Layout & Columns"
+    },
+    {
+      "type": "range",
+      "id": "desktop_columns",
+      "label": "Desktop Columns",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "tablet_columns",
+      "label": "Tablet Columns",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "mobile_columns",
+      "label": "Mobile Columns",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "desktop_gap",
+      "label": "Desktop Grid Gap (px)",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "tablet_gap",
+      "label": "Tablet Grid Gap (px)",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "label": "Mobile Grid Gap (px)",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "desktop_section_padding",
+      "label": "Desktop Section Padding (px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 112
+    },
+    {
+      "type": "range",
+      "id": "tablet_section_padding",
+      "label": "Tablet Section Padding (px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_section_padding",
+      "label": "Mobile Section Padding (px)",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_max_width",
+      "label": "Max Width (px)",
+      "min": 640,
+      "max": 1920,
+      "step": 40,
+      "default": 1280
+    },
+    {
+      "type": "range",
+      "id": "container_padding",
+      "label": "Container Side Padding (px)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "🏷️ Heading & Typography"
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Header Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Text",
+      "default": "— Best Sellers"
+    },
+    {
+      "type": "select",
+      "id": "eyebrow_transform",
+      "label": "Eyebrow Text Transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "text",
+      "id": "heading_prefix",
+      "label": "Heading Prefix",
+      "default": "Quietly "
+    },
+    {
+      "type": "text",
+      "id": "heading_emphasized",
+      "label": "Emphasized Word",
+      "default": "loved"
+    },
+    {
+      "type": "text",
+      "id": "heading_suffix",
+      "label": "Heading Suffix",
+      "default": " by thousands."
+    },
+    {
+      "type": "range",
+      "id": "title_font_weight",
+      "label": "Title Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "emphasized_weight",
+      "label": "Emphasized Word Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 500
+    },
+    {
+      "type": "text",
+      "id": "title_line_height",
+      "label": "Title Line Height",
+      "default": "1.05"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_top",
+      "label": "Title Margin Top (px)",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "desktop_heading_font_size",
+      "label": "Desktop Title Font Size (px)",
+      "min": 12,
+      "max": 120,
+      "step": 2,
+      "default": 58
+    },
+    {
+      "type": "range",
+      "id": "tablet_heading_font_size",
+      "label": "Tablet Title Font Size (px)",
+      "min": 12,
+      "max": 120,
+      "step": 2,
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_font_size",
+      "label": "Mobile Title Font Size (px)",
+      "min": 12,
+      "max": 120,
+      "step": 2,
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "desktop_eyebrow_font_size",
+      "label": "Desktop Eyebrow Font Size (px)",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "tablet_eyebrow_font_size",
+      "label": "Tablet Eyebrow Font Size (px)",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "mobile_eyebrow_font_size",
+      "label": "Mobile Eyebrow Font Size (px)",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "desktop_title_letter_spacing",
+      "label": "Desktop Title Letter Spacing (px)",
+      "min": -5,
+      "max": 30,
+      "step": 1,
+      "default": -2
+    },
+    {
+      "type": "range",
+      "id": "tablet_title_letter_spacing",
+      "label": "Tablet Title Letter Spacing (px)",
+      "min": -5,
+      "max": 30,
+      "step": 1,
+      "default": -1
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_letter_spacing",
+      "label": "Mobile Title Letter Spacing (px)",
+      "min": -5,
+      "max": 30,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "desktop_eyebrow_letter_spacing",
+      "label": "Desktop Eyebrow Letter Spacing (px)",
+      "min": 0,
+      "max": 30,
+      "step": 0.5,
+      "default": 4.0
+    },
+    {
+      "type": "range",
+      "id": "tablet_eyebrow_letter_spacing",
+      "label": "Tablet Eyebrow Letter Spacing (px)",
+      "min": 0,
+      "max": 30,
+      "step": 0.5,
+      "default": 3.5
+    },
+    {
+      "type": "range",
+      "id": "mobile_eyebrow_letter_spacing",
+      "label": "Mobile Eyebrow Letter Spacing (px)",
+      "min": 0,
+      "max": 30,
+      "step": 0.5,
+      "default": 3.0
+    },
+    {
+      "type": "range",
+      "id": "desktop_heading_spacing",
+      "label": "Desktop Header Bottom Margin (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "tablet_heading_spacing",
+      "label": "Tablet Header Bottom Margin (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_spacing",
+      "label": "Mobile Header Bottom Margin (px)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "🖼️ Image Settings"
+    },
+    {
+      "type": "range",
+      "id": "desktop_aspect_ratio",
+      "label": "Desktop Aspect Ratio (%)",
+      "min": 50,
+      "max": 200,
+      "step": 5,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "tablet_aspect_ratio",
+      "label": "Tablet Aspect Ratio (%)",
+      "min": 50,
+      "max": 200,
+      "step": 5,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_aspect_ratio",
+      "label": "Mobile Aspect Ratio (%)",
+      "min": 50,
+      "max": 200,
+      "step": 5,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "desktop_image_width",
+      "label": "Desktop Image Max Width (px)",
+      "min": 100,
+      "max": 2000,
+      "step": 50,
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "tablet_image_width",
+      "label": "Tablet Image Max Width (px)",
+      "min": 100,
+      "max": 2000,
+      "step": 50,
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_width",
+      "label": "Mobile Image Max Width (px)",
+      "min": 100,
+      "max": 2000,
+      "step": 50,
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "desktop_image_height",
+      "label": "Desktop Image Max Height (px)",
+      "min": 100,
+      "max": 2000,
+      "step": 50,
+      "default": 950
+    },
+    {
+      "type": "range",
+      "id": "tablet_image_height",
+      "label": "Tablet Image Max Height (px)",
+      "min": 100,
+      "max": 2000,
+      "step": 50,
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "label": "Mobile Image Max Height (px)",
+      "min": 100,
+      "max": 2000,
+      "step": 50,
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "desktop_image_radius",
+      "label": "Desktop Image Border Radius (px)",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "tablet_image_radius",
+      "label": "Tablet Image Border Radius (px)",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_radius",
+      "label": "Mobile Image Border Radius (px)",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "image_object_fit",
+      "label": "Image Object Fit",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" },
+        { "value": "fill", "label": "Fill" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "range",
+      "id": "image_margin_bottom",
+      "label": "Image Bottom Margin (px)",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_scale_on_hover",
+      "label": "Image Scale on Hover",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "default": 1.1
+    },
+    {
+      "type": "range",
+      "id": "image_hover_speed",
+      "label": "Image Hover Speed (s)",
+      "min": 0.2,
+      "max": 2.0,
+      "step": 0.1,
+      "default": 0.9
+    },
+    {
+      "type": "range",
+      "id": "image_overlay_opacity",
+      "label": "Image Overlay Opacity (%)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "image_overlay_color",
+      "label": "Image Overlay Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "image_placeholder_bg",
+      "label": "Image Placeholder BG",
+      "default": "#F2F0EB"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_border",
+      "label": "Show Image Border",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "image_border_width",
+      "label": "Image Border Width (px)",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "image_border_color",
+      "label": "Image Border Color",
+      "default": "#E6E2DA"
+    },
+    {
+      "type": "header",
+      "content": "📦 Product Card"
+    },
+    {
+      "type": "range",
+      "id": "desktop_card_padding",
+      "label": "Desktop Card Padding (px)",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "tablet_card_padding",
+      "label": "Tablet Card Padding (px)",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_padding",
+      "label": "Mobile Card Padding (px)",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "desktop_border_radius",
+      "label": "Desktop Card Border Radius (px)",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "tablet_border_radius",
+      "label": "Tablet Card Border Radius (px)",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_border_radius",
+      "label": "Mobile Card Border Radius (px)",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "label": "Card Border Width (px)",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card Border Color",
+      "default": "#E6E2DA"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_shadow",
+      "label": "Enable Card Shadow",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_offset",
+      "label": "Card Shadow Offset (px)",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_blur",
+      "label": "Card Shadow Blur (px)",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_shadow_opacity",
+      "label": "Card Shadow Opacity (%)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "hover_translate_y",
+      "label": "Hover Translate Y (px)",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "hover_shadow_offset",
+      "label": "Hover Shadow Offset (px)",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "hover_shadow_blur",
+      "label": "Hover Shadow Blur (px)",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "hover_shadow_opacity",
+      "label": "Hover Shadow Opacity (%)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "hover_animation_speed",
+      "label": "Hover Animation Speed (s)",
+      "min": 0.1,
+      "max": 1.0,
+      "step": 0.1,
+      "default": 0.5
+    },
+    {
+      "type": "header",
+      "content": "🔖 Product Details"
+    },
+    {
+      "type": "range",
+      "id": "desktop_product_name_size",
+      "label": "Desktop Product Name (px)",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "tablet_product_name_size",
+      "label": "Tablet Product Name (px)",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_product_name_size",
+      "label": "Mobile Product Name (px)",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "product_name_weight",
+      "label": "Product Name Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 600
+    },
+    {
+      "type": "text",
+      "id": "product_name_line_height",
+      "label": "Product Name Line Height",
+      "default": "1.2"
+    },
+    {
+      "type": "range",
+      "id": "product_name_margin_top",
+      "label": "Product Name Margin Top (px)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "product_name_margin_bottom",
+      "label": "Product Name Margin Bottom (px)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "desktop_product_desc_size",
+      "label": "Desktop Description Font Size (px)",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "tablet_product_desc_size",
+      "label": "Tablet Description Font Size (px)",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "mobile_product_desc_size",
+      "label": "Mobile Description Font Size (px)",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "desc_line_height",
+      "label": "Description Line Height",
+      "default": "1.55"
+    },
+    {
+      "type": "range",
+      "id": "desc_margin_bottom",
+      "label": "Description Bottom Margin (px)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "tag_margin_bottom",
+      "label": "Tag Bottom Margin (px)",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "💰 Price & Footer"
+    },
+    {
+      "type": "range",
+      "id": "desktop_price_size",
+      "label": "Desktop Price Font Size (px)",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "tablet_price_size",
+      "label": "Tablet Price Font Size (px)",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_price_size",
+      "label": "Mobile Price Font Size (px)",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "price_font_weight",
+      "label": "Price Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 600
+    },
+    {
+      "type": "text",
+      "id": "price_font_family",
+      "label": "Price Font Family",
+      "default": "'Playfair Display', serif"
+    },
+    {
+      "type": "range",
+      "id": "price_gap",
+      "label": "Price Gap (px)",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "footer_gap",
+      "label": "Footer Gap (px)",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "footer_padding_top",
+      "label": "Footer Padding Top (px)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "footer_border_width",
+      "label": "Footer Border Width (px)",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "footer_border_style",
+      "label": "Footer Border Style",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "dashed", "label": "Dashed" },
+        { "value": "dotted", "label": "Dotted" }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "select",
+      "id": "footer_direction",
+      "label": "Footer Direction",
+      "options": [
+        { "value": "row", "label": "Row (Horizontal)" },
+        { "value": "column", "label": "Column (Stacked)" }
+      ],
+      "default": "row"
+    },
+    {
+      "type": "header",
+      "content": "🔘 Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "default_button_text",
+      "label": "Default Button Text",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "range",
+      "id": "desktop_button_size",
+      "label": "Desktop Button Font Size (px)",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "tablet_button_size",
+      "label": "Tablet Button Font Size (px)",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_size",
+      "label": "Mobile Button Font Size (px)",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "desktop_button_padding_h",
+      "label": "Desktop Button Pad Horizontal (px)",
+      "min": 4,
+      "max": 60,
+      "step": 2,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "desktop_button_padding_v",
+      "label": "Desktop Button Pad Vertical (px)",
+      "min": 4,
+      "max": 40,
+      "step": 2,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "tablet_button_padding_h",
+      "label": "Tablet Button Pad Horizontal (px)",
+      "min": 4,
+      "max": 60,
+      "step": 2,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "tablet_button_padding_v",
+      "label": "Tablet Button Pad Vertical (px)",
+      "min": 4,
+      "max": 40,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_padding_h",
+      "label": "Mobile Button Pad Horizontal (px)",
+      "min": 4,
+      "max": 60,
+      "step": 2,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_padding_v",
+      "label": "Mobile Button Pad Vertical (px)",
+      "min": 4,
+      "max": 40,
+      "step": 2,
+      "default": 8
+    },
+  {
+  "type": "range",
+  "id": "button_border_radius",
+  "label": "Button Border Radius (px)",
+  "min": 0,
+  "max": 200,
+  "step": 2,
+  "default": 200,
+  "info": "Higher values create more rounded buttons"
+},
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "label": "Button Border Width (px)",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "button_letter_spacing",
+      "label": "Button Letter Spacing (px)",
+      "min": 0,
+      "max": 20,
+      "step": 0.5,
+      "default": 3.0
+    },
+    {
+      "type": "select",
+      "id": "button_transform",
+      "label": "Button Text Transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "button_font_weight",
+      "label": "Button Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "button_transition_speed",
+      "label": "Button Hover Transition (s)",
+      "min": 0.1,
+      "max": 1.0,
+      "step": 0.1,
+      "default": 0.3
+    },
+    {
+      "type": "range",
+      "id": "button_hover_translate",
+      "label": "Button Hover Translate (px)",
+      "min": -5,
+      "max": 5,
+      "step": 1,
+      "default": 0,
+      "info": "Negative for upward movement"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_full_width",
+      "label": "Make Button Full Width",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "🎨 Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background",
+      "default": "#F2F0EB"
+    },
+    {
+      "type": "color",
+      "id": "section_text_color",
+      "label": "Section Text Color",
+      "default": "#2D3A31"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card Headline Color",
+      "default": "#2D3A31"
+    },
+    {
+      "type": "color",
+      "id": "card_desc_color",
+      "label": "Card Description Color",
+      "default": "#6B7A72"
+    },
+    {
+      "type": "color",
+      "id": "tag_color",
+      "label": "Tag Color",
+      "default": "#8C9A84"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price Color",
+      "default": "#2D3A31"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#E6E2DA"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (italic word)",
+      "default": "#C27B66"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#2D3A31"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border Color",
+      "default": "#2D3A31"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg",
+      "label": "Button Hover Background",
+      "default": "#2D3A31"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text",
+      "label": "Button Hover Text Color",
+      "default": "#F9F8F4"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border_color",
+      "label": "Button Hover Border Color",
+      "default": "#2D3A31"
+    },
+    {
+      "type": "header",
+      "content": "✍️ Fonts"
+    },
+    {
+      "type": "font_picker",
+      "id": "section_font_family",
+      "label": "Base Font Family",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font_family",
+      "label": "Heading Font Family",
+      "default": "assistant_n4"
+    },
+    {
+      "type": "header",
+      "content": "📦 Product Limit"
+    },
+    {
+      "type": "range",
+      "id": "max_products",
+      "label": "Max Products to Show",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "default": 8
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "limit": 24,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "product_tag",
+          "label": "Product Tag",
+          "default": "Cleanser"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "Product Title",
+          "default": "Verdant Milk Cleanser"
+        },
+        {
+          "type": "text",
+          "id": "product_description",
+          "label": "Product Description",
+          "default": "Nourishing milk cleanser with sage and oat extract."
+        },
+        {
+          "type": "text",
+          "id": "product_price",
+          "label": "Price",
+          "default": "$38"
+        },
+      {
+  "type": "text",
+  "id": "compare_price",
+  "label": "Compare Price",
+  "default": "0"
+},
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Add to Cart"
+        },
+        {
+          "type": "url",
+          "id": "product_url",
+          "label": "Product URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best Sellers",
+      "blocks": [
+        {
+          "type": "product",
+          "settings": {
+            "product_tag": "Cleanser",
+            "product_title": "Verdant Milk Cleanser",
+            "product_description": "Nourishing milk cleanser with sage and oat extract.",
+            "product_price": "$38"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "product_tag": "Serum",
+            "product_title": "Glow Renewal Serum",
+            "product_description": "Vitamin C + bakuchiol for luminous, even tone.",
+            "product_price": "$64"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "product_tag": "Moisturizer",
+            "product_title": "Olive Stone Cream",
+            "product_description": "Rich whipped moisturizer with cold-pressed olive.",
+            "product_price": "$52"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "product_tag": "Toner",
+            "product_title": "Fern & Calm Toner",
+            "product_description": "Hydrating mist with fern, aloe and chamomile.",
+            "product_price": "$34"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
